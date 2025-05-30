@@ -8,17 +8,10 @@ import {
 } from 'class-validator';
 import { User } from '@prisma/client';
 
-export class CreateUserDto
-  implements Pick<User, 'email' | 'username' | 'password'>
-{
+export class LoginDto implements Pick<User, 'email' | 'password'> {
   @ApiProperty({ example: 'john@example.com' })
   @IsEmail()
   email: string;
-
-  @ApiProperty({ example: 'john123' })
-  @IsString()
-  @MaxLength(10)
-  username: string;
 
   @ApiProperty({ example: 'secure#pass123' })
   @IsString()
