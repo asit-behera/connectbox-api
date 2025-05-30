@@ -1,0 +1,12 @@
+FROM bitnami/node:22
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+RUN npm install
+
+# We do NOT copy source code; it will be mounted
+
+RUN npm install -g @nestjs/cli
+
+EXPOSE 3001
