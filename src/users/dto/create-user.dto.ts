@@ -15,9 +15,13 @@ export class CreateUserDto
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: 'john123' })
+  @ApiProperty({ example: '홍길동' })
   @IsString()
+  @MinLength(1)
   @MaxLength(10)
+  @Matches(/^[가-힣]{1,10}$/, {
+    message: 'Username must be in Korean (1–10 characters)',
+  })
   username: string;
 
   @ApiProperty({ example: 'secure#pass123' })
