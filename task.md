@@ -16,7 +16,7 @@
 - [x] Validate ID as email and ensure uniqueness
 - [x] Validate password (12–20 chars, lowercase + special chars + numbers)
 - [x] Encrypt password using bcrypt
-- [ ] Validate username (Korean, 1–10 characters)
+- [x] Validate username (Korean, 1–10 characters)
 - [x] Store registration time (ISO8601 format)
 - [x] Return ID, username, and registration time on success
 
@@ -33,10 +33,10 @@
 
 ## ✏️ 4. Modify User Info API (PATCH)
 
-- [ ] Allow modification of:
-  - [ ] Password (encrypted, validated)
-  - [ ] Username (Korean, 1–10 characters)
-- [ ] Process only non-null fields
+- [x] Allow modification of:
+  - [x] Password (encrypted, validated)
+  - [x] Username (Korean, 1–10 characters)
+- [x] Process only non-null fields
 
 ---
 
@@ -124,8 +124,5 @@
 ## 🗂️ Additional Notes
 
 - [ ] Use Prisma migrations for DB table setup
-- [ ] Follow best practices from:
-  - [ ] [NestJS Docs](https://docs.nestjs.com)
-  - [ ] [Prisma Docs](https://www.prisma.io/docs)
 
 ---
