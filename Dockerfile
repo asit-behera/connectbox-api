@@ -32,7 +32,8 @@ COPY --from=builder /usr/src/app/dist ./dist
 COPY --from=builder /usr/src/app/prisma ./prisma
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 
-RUN printenv PORT
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
 RUN printenv DATABASE_URL
 
 # Migrate DB (optional: depends if you run migrations at runtime or separately)
