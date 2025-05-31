@@ -29,9 +29,15 @@ COPY --from=builder /usr/src/app/dist ./dist
 COPY --from=builder /usr/src/app/prisma ./prisma
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 
+RUN printenv PORT
+RUN printenv DATABASE_URL
+
 # Migrate DB (optional: depends if you run migrations at runtime or separately)
 RUN npx prisma generate
+RUN npx prisma migrate deploy 
+
 
 ENV NODE_ENV=production
 
-CMD ["npm","run","start:prod"]
+#CMD ["npm","run","start:prod"]
+CMD ["node","dist/main"]
