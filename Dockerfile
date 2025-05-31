@@ -1,6 +1,9 @@
 # Stage 1: Build
 FROM node:22 AS builder
 
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
+
 RUN apt-get update && \
     apt-get install -y openssl libssl3 && \
     rm -rf /var/lib/apt/lists/*
@@ -34,7 +37,6 @@ RUN printenv DATABASE_URL
 
 # Migrate DB (optional: depends if you run migrations at runtime or separately)
 RUN npx prisma generate
-RUN npx prisma migrate deploy 
 
 
 ENV NODE_ENV=production
