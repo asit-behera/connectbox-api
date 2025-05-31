@@ -44,23 +44,23 @@
 
 ### 5.1 Post Creation
 
-- [ ] Validate title (1–30 characters)
-- [ ] Validate content (1–1000 characters)
+- [x] Validate title (1–30 characters)
+- [x] Validate content (1–1000 characters)
 
 ### 5.2 Post Listing (Pagination)
 
-- [ ] Support query param for page number
-- [ ] Limit 20 posts per page
-- [ ] Include total post count
-- [ ] Sort by recent creation time
-- [ ] Return: Post ID, Title, Creator Username, ISO8601 Creation Time
+- [x] Support query param for page number
+- [x] Limit 20 posts per page
+- [x] Include total post count
+- [x] Sort by recent creation time
+- [x] Return: Post ID, Title, Creator Username, ISO8601 Creation Time
 
 ### 5.3 Post Detail View
 
-- [ ] Return: Post ID, Title, Content, Creator Username, ISO8601 Creation Time
-- [ ] Handle responses:
-  - [ ] `200` - Success
-  - [ ] `401` - Auth failure
+- [x] Return: Post ID, Title, Content, Creator Username, ISO8601 Creation Time
+- [x] Handle responses:
+  - [x] `200` - Success
+  - [x] `401` - Auth failure
   - [ ] `404` - Not found
 
 ---
