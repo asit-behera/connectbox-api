@@ -1,9 +1,18 @@
-import { Controller, Get, Post, Body, UseGuards, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  UseGuards,
+  Query,
+  Param,
+  NotFoundException,
+} from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { User } from '@prisma/client';
 import { CurrentUser } from 'src/auth/currentUser.decorator';
-import { ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiParam, ApiQuery } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiBearerAuth()
@@ -39,15 +48,29 @@ export class PostsController {
     };
   }
 
+  @ApiParam({
+    name: 'id',
+    required: true,
+    type: Number,
+    description: 'Post Id',
+  })
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    const post = await this.postsService.findOne(+id);
+
+    if (!post) {
+      throw new NotFoundException(`Post with ID ${id} not found`);
+    }
+
+    return post;
+  }
+
   /*  @Get()
   findAll() {
     return this.postsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.postsService.findOne(+id);
-  }
+  
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {

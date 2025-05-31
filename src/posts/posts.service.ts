@@ -30,24 +30,25 @@ export class PostsService {
       },
     });
 
-    // Format createdAt as ISO 8601 string (JS Date.toISOString() does this by default)
-    const formattedPosts = posts.map((post) => ({
-      id: post.id,
-      title: post.title,
-      creatorUsername: post.author.username,
-      createdAt: post.createdAt.toISOString(),
-    }));
+    return [totalCount, posts];
+  }
 
-    return [totalCount, formattedPosts];
+  findOne(id: number) {
+    return this.prisma.post.findUnique({
+      where: { id },
+      include: {
+        author: {
+          select: { username: true },
+        },
+      },
+    });
   }
 
   /* findAll() {
     return `This action returns all posts`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
-  }
+  
 
   update(id: number, UpdatePostDto: UpdatePostDto) {
     return `This action updates a #${id} post`;

@@ -61,7 +61,7 @@
 - [x] Handle responses:
   - [x] `200` - Success
   - [x] `401` - Auth failure
-  - [ ] `404` - Not found
+  - [x] `404` - Not found
 
 ---
 
@@ -69,20 +69,20 @@
 
 ### 6.1 Comment Creation
 
-- [ ] Validate content (1–500 characters)
+- [x] Validate content (1–500 characters)
 
 ### 6.2 Comment Listing (Cursor-based Pagination)
 
-- [ ] Implement cursor-based pagination
-- [ ] Limit to 10 comments per page
-- [ ] Include cursor for next page (null if none)
-- [ ] Sort by recent creation time
-- [ ] Return: Comment ID, Content, Username, ISO8601 Creation Time
+- [x] Implement cursor-based pagination
+- [x] Limit to 10 comments per page
+- [x] Include cursor for next page (null if none)
+- [x] Sort by recent creation time
+- [x] Return: Comment ID, Content, Username, ISO8601 Creation Time
 
 ### 6.3 Comment Deletion
 
-- [ ] Allow only comment/post owner to delete
-- [ ] Use Comment ID to identify comment
+- [x] Allow only comment/post owner to delete
+- [x] Use Comment ID to identify comment
 
 ---
 
