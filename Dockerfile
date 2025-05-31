@@ -34,6 +34,4 @@ RUN npx prisma generate
 
 ENV NODE_ENV=production
 
-RUN npx prisma migrate deploy
-
-CMD ["node" ,"dist/main"]
+CMD ["npm","run","start:prod"]
