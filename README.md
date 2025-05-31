@@ -1,98 +1,120 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# ✅ Task Checklist
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 🛠️ 1. Development Environment Setup
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- [x] Set up Docker Compose with:
+  - [x] Node.js LTS on port `3001`
+  - [x] PostgreSQL 14.2 on port `5432`
+- [x] Enable live-reloading for code changes
+- [ ] Configure `eslint` and `prettier` (Google JavaScript style guide)
+- [x] Ensure Git is used actively for commits
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 👤 2. User Registration API
 
-## Project setup
+- [x] Validate ID as email and ensure uniqueness
+- [x] Validate password (12–20 chars, lowercase + special chars + numbers)
+- [x] Encrypt password using bcrypt
+- [x] Validate username (Korean, 1–10 characters)
+- [x] Store registration time (ISO8601 format)
+- [x] Return ID, username, and registration time on success
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## 🔐 3. Login API
 
-```bash
-# development
-$ npm run start
+- [x] Validate email format
+- [x] Check password and issue JWT on success
+- [x] Use 256-bit hex value as JWT secret
+- [x] JWT should expire in 20 minutes
 
-# watch mode
-$ npm run start:dev
+---
 
-# production mode
-$ npm run start:prod
-```
+## ✏️ 4. Modify User Info API (PATCH)
 
-## Run tests
+- [x] Allow modification of:
+  - [x] Password (encrypted, validated)
+  - [x] Username (Korean, 1–10 characters)
+- [x] Process only non-null fields
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
+## 📝 5. Post Management API
 
-# test coverage
-$ npm run test:cov
-```
+### 5.1 Post Creation
 
-## Deployment
+- [x] Validate title (1–30 characters)
+- [x] Validate content (1–1000 characters)
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### 5.2 Post Listing (Pagination)
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+- [x] Support query param for page number
+- [x] Limit 20 posts per page
+- [x] Include total post count
+- [x] Sort by recent creation time
+- [x] Return: Post ID, Title, Creator Username, ISO8601 Creation Time
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+### 5.3 Post Detail View
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+- [x] Return: Post ID, Title, Content, Creator Username, ISO8601 Creation Time
+- [x] Handle responses:
+  - [x] `200` - Success
+  - [x] `401` - Auth failure
+  - [x] `404` - Not found
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
+## 💬 6. Comment API
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### 6.1 Comment Creation
 
-## Support
+- [x] Validate content (1–500 characters)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### 6.2 Comment Listing (Cursor-based Pagination)
 
-## Stay in touch
+- [x] Implement cursor-based pagination
+- [x] Limit to 10 comments per page
+- [x] Include cursor for next page (null if none)
+- [x] Sort by recent creation time
+- [x] Return: Comment ID, Content, Username, ISO8601 Creation Time
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### 6.3 Comment Deletion
 
-## License
+- [x] Allow only comment/post owner to delete
+- [x] Use Comment ID to identify comment
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+---
+
+## 📈 7. User Login Record API
+
+- [x] Track user ID, login time, and IP address
+- [x] Sort by recent login time
+- [x] Limit to 30 records
+- [x] Format login time as `YYYY-MM-DD HH:mm:ss`
+- [x] If user is deleted, show name as null
+
+---
+
+## 🏆 8. Weekly Login Rankings API
+
+- [x] Compute logins from Monday–Sunday
+- [x] Return user name and rank
+- [x] Include tie handling (no skipped ranks)
+- [x] Return number of users sharing same rank
+- [x] Limit to top 20 users
+- [ ] Handle case when there are no login records (rank and count = null)
+
+---
+
+## 🔒 Authentication
+
+- [x] Ensure Bearer Token Authentication is applied to all APIs (except signup/login)
+- [x] Maintain consistent `application/json` Content-Type for all requests/responses
+- [ ] Consistent error response format
+
+---
+
+## 🧪 Optional: Testing
+
+- [ ] Write test cases (unit/integration)

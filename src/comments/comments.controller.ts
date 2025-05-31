@@ -12,7 +12,7 @@ import {
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { CommentsService } from './comments.service';
-import { CurrentUser } from 'src/auth/currentUser.decorator';
+import { CurrentUser } from 'src/auth/decorators/currentUser.decorator';
 import { User } from '@prisma/client';
 import {
   ApiBearerAuth,

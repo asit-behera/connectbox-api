@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Ip } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiCreatedResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
@@ -29,7 +29,10 @@ export class AuthController {
     type: LoginDto,
     description: 'User successfully logged in',
   })
-  async login(@Body() loginDto: LoginDto): Promise<LoginResponseDto> {
-    return this.authService.login(loginDto);
+  async login(
+    @Ip() ip: string,
+    @Body() loginDto: LoginDto,
+  ): Promise<LoginResponseDto> {
+    return this.authService.login(loginDto, ip);
   }
 }

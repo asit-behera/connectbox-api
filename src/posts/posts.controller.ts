@@ -11,7 +11,7 @@ import {
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { User } from '@prisma/client';
-import { CurrentUser } from 'src/auth/currentUser.decorator';
+import { CurrentUser } from 'src/auth/decorators/currentUser.decorator';
 import { ApiBearerAuth, ApiParam, ApiQuery } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 

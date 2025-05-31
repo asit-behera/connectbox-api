@@ -11,12 +11,14 @@ import { UserResponseDto } from 'src/users/dto/user-response.dto';
 import { LoginDto } from './dto/login-auth.dto';
 import { LoginResponseDto } from './dto/login-response.dto';
 import { JwtService } from '@nestjs/jwt';
+import { LoginRecordService } from 'src/login-record/login-record.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly loginRecordService: LoginRecordService,
   ) {}
 
   async register(createUserDto: CreateUserDto): Promise<UserResponseDto> {
@@ -35,7 +37,7 @@ export class AuthService {
     return UserResponseDto.fromEntity(user);
   }
 
-  async login(loginDto: LoginDto): Promise<LoginResponseDto> {
+  async login(loginDto: LoginDto, ip: string): Promise<LoginResponseDto> {
     const user = await this.usersService.findByEmail(loginDto.email);
 
     if (!user) throw new UnauthorizedException('Invalid credentials');
@@ -48,6 +50,11 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
 
     const accessToken = this.jwtService.sign({ sub: user.id });
+
+    await this.loginRecordService.recordLogin({
+      userId: user.id,
+      ip,
+    });
 
     return {
       user: UserResponseDto.fromEntity(user),

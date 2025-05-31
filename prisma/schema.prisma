@@ -14,13 +14,14 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
-  username  String    @db.VarChar(10)
-  password  String
-  createdAt DateTime  @default(now())
-  Posts     Post[]
-  Comments  Comment[]
+  id          String        @id @default(uuid())
+  email       String        @unique
+  username    String        @db.VarChar(10)
+  password    String
+  createdAt   DateTime      @default(now())
+  Posts       Post[]
+  Comments    Comment[]
+  LoginRecord LoginRecord[]
 }
 
 model Post {
@@ -43,4 +44,12 @@ model Comment {
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   @@index([postId])
+}
+
+model LoginRecord {
+  id        Int      @id @default(autoincrement())
+  userId    String?
+  ip        String   @db.VarChar(45)
+  loginTime DateTime
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 }

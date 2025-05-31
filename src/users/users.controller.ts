@@ -4,15 +4,15 @@ import { UsersService } from './users.service';
 import { UserResponseDto } from './dto/user-response.dto';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { CurrentUser } from 'src/auth/currentUser.decorator';
+import { CurrentUser } from 'src/auth/decorators/currentUser.decorator';
 import { User } from '@prisma/client';
 
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
   @Patch()
   update(
     @CurrentUser() currentUser: User,
