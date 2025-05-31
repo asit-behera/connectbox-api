@@ -38,7 +38,7 @@ RUN printenv DATABASE_URL
 
 # Migrate DB (optional: depends if you run migrations at runtime or separately)
 RUN npx prisma generate
-
+RUN npx prisma migrate deploy
 
 ENV NODE_ENV=production
 
